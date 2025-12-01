@@ -16,7 +16,7 @@
 
 ```bash
 pip install -r requirements.txt
-
+````
 Комментарии:
 
 Убрал весь текст в отдельный файл data.py
@@ -28,6 +28,8 @@ pip install -r requirements.txt
 ничего лучшего чем создать специально под конструктор отдельную фикстуру не нашел.
 Но теперь тест - test_transition_the_constructor_click_logo стал проходить дольше
 из-за каких-то фоновых сервисов Google Chrome при запуске в терминале командой:
-bash
+
+````bash
 
 pytest -v -s
+````
