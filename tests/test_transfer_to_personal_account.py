@@ -3,7 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from helper import generate_registration_data
 from locators import Locators
-
+from data import ButtonTexts
 
 class TestLoginFromAccountLink:
 
@@ -18,4 +18,4 @@ class TestLoginFromAccountLink:
             EC.visibility_of_element_located(Locators.CHECKOUT_BUTTON)
         )
 
-        assert checkout_button.text == "Оформить заказ"
+        assert checkout_button.text == ButtonTexts.button_checkout

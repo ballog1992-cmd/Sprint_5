@@ -3,9 +3,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from locators import Locators
 from curl import *
+from data import ButtonTexts
 
-
-class TestLoginFromHomePageButton:
+class TestSuccessfulLoginFromDifferentPages:
 
     def test_login_home_page_button(self, main_page, login):
 
@@ -18,10 +18,8 @@ class TestLoginFromHomePageButton:
             EC.visibility_of_element_located(Locators.CHECKOUT_BUTTON)
         )
 
-        assert checkout_button.text == "Оформить заказ"
+        assert checkout_button.text == ButtonTexts.button_checkout
 
-
-class TestLoggingAccountThroughTheRegistrationPage:
 
     def test_logging_account_the_regestration_page(self, regestration_page, login):
 
@@ -33,10 +31,8 @@ class TestLoggingAccountThroughTheRegistrationPage:
         checkout_button = wait.until(
             EC.visibility_of_element_located(Locators.CHECKOUT_BUTTON)
         )
-        assert checkout_button.text == "Оформить заказ"
+        assert checkout_button.text == ButtonTexts.button_checkout
 
-
-class TestLoggingAccountThronghTheRecoveryPasswordPage:
 
     def test_logging_account_the_recovery_password_page(
         self, recovery_password_page, login
@@ -52,4 +48,4 @@ class TestLoggingAccountThronghTheRecoveryPasswordPage:
         checkout_button = wait.until(
             EC.visibility_of_element_located(Locators.CHECKOUT_BUTTON)
         )
-        assert checkout_button.text == "Оформить заказ"
+        assert checkout_button.text == ButtonTexts.button_checkout

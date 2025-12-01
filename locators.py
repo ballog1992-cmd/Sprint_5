@@ -49,3 +49,5 @@ class Locators:
     TAB_SAUSES = (By.XPATH, './/span[text()="Соусы"]')
     # Раздел "Начинки"
     TAB_STUFFING = (By.XPATH, './/span[text()="Начинки"]')
+    # Активный таб после нажатия
+    ACTIVE_TAB = (By.CSS_SELECTOR, ".tab_tab_type_current__2BEPc")

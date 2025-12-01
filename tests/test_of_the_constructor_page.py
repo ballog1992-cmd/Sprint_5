@@ -1,39 +1,27 @@
+import pytest
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators import Locators
 from curl import *
+from data import ButtonTexts
 
 
+@pytest.mark.parametrize("tab_text,tab_locator", [
+     
+    
+    (ButtonTexts.text_tub_sause, Locators.TAB_SAUSES),
+    (ButtonTexts.text_tub_filling, Locators.TAB_STUFFING),
+    (ButtonTexts.text_tub_buns, Locators.TAB_BUNS)
+])
 class TestConstructionTabsIngredientBurger:
+    def test_tabs_ingridient_burger(self, konstructor_page, tab_text,tab_locator):
 
-    def test_tabs_ingridient_burger_buns(self, main_page):
+        konstructor_page.find_element(*tab_locator).click()
 
-        main_page.find_element(*Locators.TAB_SAUSES).click()
+        wait = WebDriverWait(konstructor_page, 10)
+        wait.until(EC.text_to_be_present_in_element(Locators.ACTIVE_TAB, tab_text))
 
-        wait = WebDriverWait(main_page, 10)
-        wait.until(EC.visibility_of_element_located(Locators.TAB_SAUSES))
-
-        main_page.find_element(*Locators.TAB_BUNS).click()
-
-        wait.until(EC.visibility_of_element_located(Locators.TAB_BUNS))
-
-        assert main_page.find_element(*Locators.TAB_BUNS).text == "Булки"
-
-    def test_tabs_ingridient_burger_sauce(self, main_page):
-
-        main_page.find_element(*Locators.TAB_SAUSES).click()
-
-        wait = WebDriverWait(main_page, 10)
-        wait.until(EC.visibility_of_element_located(Locators.TAB_SAUSES))
-
-        assert main_page.find_element(*Locators.TAB_SAUSES).text == "Соусы"
-
-    def test_tabs_ingridient_burger_filling(self, main_page):
-
-        main_page.find_element(*Locators.TAB_STUFFING).click()
-
-        wait = WebDriverWait(main_page, 10)
-        wait.until(EC.visibility_of_element_located(Locators.TAB_STUFFING))
-
-        assert main_page.find_element(*Locators.TAB_STUFFING).text == "Начинки"
+        active_tab = konstructor_page.find_element(*Locators.ACTIVE_TAB)
+        assert active_tab.text == tab_text

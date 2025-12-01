@@ -5,15 +5,29 @@ from curl import *
 from locators import Locators
 from data import Credentials
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture(scope="function")
 def driver():
+
+    options = Options()
+    options.add_argument("--window-size=1200,600")
     driver = webdriver.Chrome()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(3)
     yield driver
     driver.quit()
 
+@pytest.fixture(scope="class")
+def konstructor_page():
+
+    options = Options()
+    options.add_argument("--window-size=1200,600")
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    driver = webdriver.Chrome()
+    driver.get(main_site)
+    yield driver
+    driver.quit()
 
 @pytest.fixture(scope="function")
 def main_page(driver):
