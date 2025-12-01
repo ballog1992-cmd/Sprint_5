@@ -1,0 +1,5 @@
+main_site = "https://stellarburgers.education-services.ru"
+regestration_form = f"{main_site}/register"
+login_form = f"{main_site}/login"
+personal_account = f"{main_site}/account/profile"
+password_recovery_page = f"{main_site}/forgot-password"
